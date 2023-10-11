@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Page</title>
+  <style>
+    /* Add your CSS styles here */
+
+    /* Example styles for RegisterContainer */
+    .register-container {
+      padding: 1rem;
+      background-color: rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      height: 100vh;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    /* Example styles for TextInput */
+    .text-input {
+      padding: .5rem;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: .25rem;
+    }
+
+    /* Example styles for RegisterButton */
+    .register-button {
+      padding: .5rem;
+      width: 100%;
+      max-width: 300px;
+      border: none;
+      border-radius: .25rem;
+      background-color: #3eb1b1;
+      color: white;
+      cursor: pointer;
+    }
+
+    .register-button:hover {
+      background-color: #359595;
+    }
+
+    /* Add more styles as needed for other elements */
+
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <!-- Content for Register Page -->
+    <input type="text" class="text-input" placeholder="Username">
+    <input type="password" class="text-input" placeholder="Password">
+    <input type="password" class="text-input" placeholder="Confirm Password">
+    <button class="register-button">Register</button>
+  </div>
+
+  <script>
+    // Your JavaScript logic goes here
+
+    // Example: Add event listener for register button click
+    const registerButton = document.querySelector('.register-button');
+    registerButton.addEventListener('click', () => {
+      // Register button click logic
+      console.log('Register button clicked!');
+    });
+  </script>
+</body>
+</html>
+''
