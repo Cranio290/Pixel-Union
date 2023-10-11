@@ -41,7 +41,7 @@ include 'srv/socket.php';
 <script src="scripts/placepixels.js"></script>
 <script src="scripts/render.js">
 </script>
-<script src="scripts/movement.js"></script>
+<script src="scripts/panzoom.js"></script>
 <script src="scripts/send.js"></script>
 <script src="scripts/socket.js"></script>
 
