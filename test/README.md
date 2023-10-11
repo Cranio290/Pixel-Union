@@ -1,1 +1,2 @@
-
+# Test
+This folder contains just some tests or experiments...
