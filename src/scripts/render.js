@@ -18,11 +18,8 @@ function changepixeldata(id, color) {
 }
 
 function drawpixel(x, y, color) {
-  ctx.beginPath();
   ctx.fillStyle = color;
-  ctx.rect(x, y, 1, 1);
-  ctx.fill();
-  ctx.closePath();
+  ctx.fillRect(x, y, 1, 1);
 }
 
 function drawpixelchunk(sX, sY, repX, repY) {
@@ -37,8 +34,8 @@ function drawpixelchunk(sX, sY, repX, repY) {
 function setchunk(chunksize, crop) {
 let newchunksize = Math.round(chunksize - (cameraZoom - crop) / 43);
 
-let camX = Math.round(-1 * (cameraOffset.x - centX) - 30);
-let camY = Math.round(-1 * (cameraOffset.y - centY) - 35);
+let camX = Math.round(-1 * (positionX - centX) - 30);
+let camY = Math.round(-1 * (positionY - centY) - 35);
 
 if (-1 * camX > gamecvs.width/2) {
   var boundX = gamecvs.width;
