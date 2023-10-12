@@ -9,11 +9,6 @@ var b;
 var canvas2 = document.getElementById('canvas2');
 var ctx2 = canvas2.getContext('2d');
 
-var gamecvs = {width: 500, height: 500};
-
-var centX = window.innerWidth/2;
-var centY = window.innerHeight/2;
-
 var width = 0;
 var height = 0;
 var canvasX = 0;
