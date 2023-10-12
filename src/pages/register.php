@@ -1,72 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register Page</title>
-  <style>
-    /* Add your CSS styles here */
+<?php
+$servername = "your_server_name";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database_name";
 
-    /* Example styles for RegisterContainer */
-    .register-container {
-      padding: 1rem;
-      background-color: rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .5rem;
-      height: 100vh;
-      box-sizing: border-box;
-      position: relative;
-    }
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    /* Example styles for TextInput */
-    .text-input {
-      padding: .5rem;
-      width: 100%;
-      max-width: 300px;
-      border: 1px solid #ccc;
-      border-radius: .25rem;
-    }
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
-    /* Example styles for RegisterButton */
-    .register-button {
-      padding: .5rem;
-      width: 100%;
-      max-width: 300px;
-      border: none;
-      border-radius: .25rem;
-      background-color: #3eb1b1;
-      color: white;
-      cursor: pointer;
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $username = $_POST['username'];
+  $password = $_POST['password']; // Note: You should hash this password before saving it to the database
 
-    .register-button:hover {
-      background-color: #359595;
-    }
+  $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
 
-    /* Add more styles as needed for other elements */
+  if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+}
 
-  </style>
-</head>
-<body>
-  <div class="register-container">
-    <!-- Content for Register Page -->
-    <input type="text" class="text-input" placeholder="Username">
-    <input type="password" class="text-input" placeholder="Password">
-    <input type="password" class="text-input" placeholder="Confirm Password">
-    <button class="register-button">Register</button>
-  </div>
-
-  <script>
-    // Your JavaScript logic goes here
-
-    // Example: Add event listener for register button click
-    const registerButton = document.querySelector('.register-button');
-    registerButton.addEventListener('click', () => {
-      // Register button click logic
-      console.log('Register button clicked!');
-    });
-  </script>
-</body>
-  </html>
+$conn->close();
+?>
+Register php is
