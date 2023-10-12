@@ -4,6 +4,8 @@ var centX = window.innerWidth/2;
 var centY = window.innerHeight/2;
 
 var cameraZoom = 1;
+var positionX = window.innerWidth/2;
+var positionY = window.innerHeight/2;
 let MAX_ZOOM = 1000;
 let MIN_ZOOM = 0.1;
 let SCROLL_SENSITIVITY = 0.0005;
