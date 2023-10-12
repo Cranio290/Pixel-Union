@@ -137,9 +137,6 @@ window.onresize = function(e){ reOffset(); }
 var isDown = false;
 var startX, startY;
 
-var positionX = window.innerWidth/2;
-var positionY = window.innerHeight/2;
-
 for(var x=0;x<100;x++){ ctx.fillText(x,x*20,ch/2); }
 for(var y=-50;y<50;y++){ ctx.fillText(y,cw/2,y*20); }
 
