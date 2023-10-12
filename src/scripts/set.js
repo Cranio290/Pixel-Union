@@ -9,8 +9,6 @@ var positionY = window.innerHeight/2;
 let MAX_ZOOM = 1000;
 let MIN_ZOOM = 0.1;
 let SCROLL_SENSITIVITY = 0.0005;
-var positionX = window.innerWidth/2;
-var positionY = window.innerHeight/2;
 
 function updateCoords() {
 document.getElementById("coordtxt").innerText = "(" + Math.round(positionX - centX) + ", " + Math.round(positionY - centY) + ", " + Math.round(cameraZoom) + ")";
