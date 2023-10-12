@@ -1,3 +1,8 @@
+var gamecvs = {width: 500, height: 500};
+
+var centX = window.innerWidth/2;
+var centY = window.innerHeight/2;
+
 var cameraZoom = 1;
 let MAX_ZOOM = 1000;
 let MIN_ZOOM = 0.1;
