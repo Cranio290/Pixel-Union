@@ -10,7 +10,12 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+<?php 
 
+include 'srv/setpixel.php';
+
+include 'srv/socket.php';
+?>
 <canvas id="canvas"></canvas>
 <canvas id="canvas2" style="position: absolute; top: 0; left: 0;"></canvas>
 
