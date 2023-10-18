@@ -1,14 +1,17 @@
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
 var gamecvs = {width: 500, height: 500};
 
 var centX = window.innerWidth/2;
 var centY = window.innerHeight/2;
 
-var cameraZoom = 1;
-var positionX = window.innerWidth/2;
-var positionY = window.innerHeight/2;
+var cameraZoom = 7;
+var positionX = centX;
+var positionY = centY;
 let MAX_ZOOM = 1000;
 let MIN_ZOOM = 0.1;
-let SCROLL_SENSITIVITY = 0.0005;
+let SCROLL_SENSITIVITY = 0.0010;
 
 function updateCoords() {
 document.getElementById("coordtxt").innerText = "(" + Math.round(positionX - centX) + ", " + Math.round(positionY - centY) + ", " + Math.round(cameraZoom) + ")";
