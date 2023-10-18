@@ -28,14 +28,17 @@ function getColor() {
  b = parseInt(color.value.substr(5,2), 16);
 }
 
-function getPixelID(x, y) {
+function getPixelID(x, y, s) {
   if (x > canvasX & x < canvasX + canvasW & y > canvasY & y < canvasY + canvasH) {
     const cvsMouseX = (x - canvasX) / cameraZoom;
     const cvsMouseY = (y - canvasY) / cameraZoom;
-
-    pixelID = (Math.floor(cvsMouseY) * gamecvs.width) + (Math.floor(cvsMouseX) + 1);
+	
+    pixelID =(Math.floor(cvsMouseY) * gamecvs.width) + (Math.floor(cvsMouseX) + 1);
     getColor();
-    sendPixel(Math.floor(cvsMouseX), Math.floor(cvsMouseY), r, g, b, 0)
+ 
+	if (s == 1) {
+	sendPixel(Math.floor(cvsMouseX), Math.floor(cvsMouseY), r, g, b, 0);
+	}
   }
 }
 function getCoords(event) {
@@ -47,17 +50,15 @@ function getCoords(event) {
   width = gamecvs.width * cameraZoom;
   height = gamecvs.height * cameraZoom;
 
-  canvasX = centX + (cameraOffset.x - centX) * cameraZoom;
-  canvasY = centY + (cameraOffset.y - centY) * cameraZoom;
-
+  canvasX = (-centX + positionX / cameraZoom) * cameraZoom + centX;
+  canvasY = (-centY + positionY / cameraZoom) * cameraZoom + centY;
+  
   canvasW = gamecvs.width * cameraZoom;
   canvasH = gamecvs.height * cameraZoom;
 }
 
 document.addEventListener("click", function(event) {
   getCoords(event);
-  getPixelID(MouseX, MouseY);
-  //alert(cvsMouseX + "n" + cvsMouseY);
-  //send(Math.floor(cvsMouseX), Math.floor(cvsMouseY), 255, 0, 0, 0);
+  getPixelID(MouseX, MouseY, 1);
+  //sendPixel(Math.floor(cvsMouse[0]), Math.floor(cvsMouse[1]), 255, 0, 0, 0);
 });
-
