@@ -19,7 +19,7 @@ function changepixeldata(id, color) {
 
 function drawpixel(x, y, color) {
   ctx.fillStyle = color;
-  ctx.fillRect(x, y, 1, 1);
+  ctx.fillRect(x, y, 1.1, 1.1);
 }
 
 function drawpixelchunk(sX, sY, repX, repY) {
@@ -32,7 +32,7 @@ function drawpixelchunk(sX, sY, repX, repY) {
 }
 
 function setchunk(chunksize, crop) {
-let newchunksize = Math.round(chunksize - (cameraZoom - crop) / 43);
+//let newchunksize = Math.round(chunksize);
 
 let camX = Math.round(-1 * (positionX - centX) - 30);
 let camY = Math.round(-1 * (positionY - centY) - 35);
@@ -60,7 +60,8 @@ function rendercvs() {
 
 if (canvasimg.complete) {
 ctx.drawImage(canvasimg, 0, 0);
-precanvas.src = "../canvas.png?" + cachebreak;
+precanvas.src = "../canvas.png?";
+//+ cachebreak;
 } else {
   if (precanvas.complete) {
   ctx.drawImage(precanvas, 0, 0);
@@ -69,8 +70,9 @@ precanvas.src = "../canvas.png?" + cachebreak;
 }
 }
 
-if (cameraZoom > 15) {
-setchunk(70, 15);
-}
+//if (cameraZoom > 15) {
+drawpixelchunk(0, 0, 50, 50);
+drawpixel(0, 0, "red");
+//}
 }
 rendercvs();
