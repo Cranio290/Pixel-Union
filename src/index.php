@@ -6,16 +6,16 @@
 <html>
   <head>
     <title>Cool pixel game</title>
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
 <?php 
-
-include 'srv/setpixel.php';
-
+include 'srv/resetcanvas.php'; 
 include 'srv/socket.php';
 ?>
+
 <canvas id="canvas"></canvas>
 <canvas id="canvas2" style="position: absolute; top: 0; left: 0;"></canvas>
 
