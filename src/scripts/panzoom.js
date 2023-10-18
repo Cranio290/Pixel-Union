@@ -1,9 +1,3 @@
-var cameraOffset = { x: window.innerWidth/2, y: window.innerHeight/2 };
-var cameraZoom = 1;
-let MAX_ZOOM = 1000;
-let MIN_ZOOM = 0.1;
-let SCROLL_SENSITIVITY = 0.0005;
-
 function draw()
 {
     canvas.width = window.innerWidth;
@@ -12,9 +6,9 @@ function draw()
     // Translate to canvas center before zoom
     ctx.translate( window.innerWidth / 2, window.innerHeight / 2 );
     ctx.scale(cameraZoom, cameraZoom);
-    ctx.translate(  -window.innerWidth / 2 + positionX / cameraZoom, -window.innerHeight / 2 + positionY / cameraZoom );
+    ctx.translate(  -window.innerWidth / 2 + positionX, -window.innerHeight / 2 + positionY);
     ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
-    ctx2.clearRect(0,0, window.innerWidth, window.innerHeight);
+    //ctx2.clearRect(0,0, window.innerWidth, window.innerHeight);
 
   rendercvs();
 
@@ -50,11 +44,7 @@ function onPointerUp(e) {
 }
 
 function onPointerMove(e) {
-    if (isDragging) {
-      
-        cameraOffset.x = getEventLocation(e).x/cameraZoom - dragStart.x;
-        cameraOffset.y = getEventLocation(e).y/cameraZoom - dragStart.y;
-    }
+
 }
 
 function handleTouch(e, singleTouchHandler)
@@ -93,15 +83,16 @@ function handlePinch(e)
 }
 
 function adjustZoom(zoomAmount, zoomFactor)
-{
+{	
     if (!isDragging)
     {
         if (zoomAmount)
         {
-            cameraZoom += zoomAmount
+			cameraZoom += zoomAmount;
         }
         else if (zoomFactor)
         {
+			console.log(zoomFactor + "H");
             cameraZoom = zoomFactor*lastZoom;
         }
         
@@ -110,12 +101,12 @@ function adjustZoom(zoomAmount, zoomFactor)
     }
 }
 
-//canvas.addEventListener('mousedown', onPointerDown);
-//canvas.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown));
-//canvas.addEventListener('mouseup', onPointerUp);
-//canvas.addEventListener('touchend',  (e) => handleTouch(e, onPointerUp));
-//canvas.addEventListener('mousemove', onPointerMove);
-//canvas.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove));
+canvas.addEventListener('mousedown', onPointerDown);
+canvas.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown));
+canvas.addEventListener('mouseup', onPointerUp);
+canvas.addEventListener('touchend',  (e) => handleTouch(e, onPointerUp));
+canvas.addEventListener('mousemove', onPointerMove);
+canvas.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove));
 canvas.addEventListener( 'wheel', (e) => adjustZoom(e.deltaY*SCROLL_SENSITIVITY));
 
 draw();
@@ -140,10 +131,10 @@ var startX, startY;
 for(var x=0;x<100;x++){ ctx.fillText(x,x*20,ch/2); }
 for(var y=-50;y<50;y++){ ctx.fillText(y,cw/2,y*20); }
 
-$("#canvas").mousedown(function(e){handleMouseDown(e);});
-$("#canvas").mousemove(function(e){handleMouseMove(e);});
-$("#canvas").mouseup(function(e){handleMouseUp(e);});
-$("#canvas").mouseout(function(e){handleMouseOut(e);});
+canvas.addEventListener('mousedown', (e) => handleMouseDown(e));
+canvas.addEventListener('mousemove', (e) => handleMouseMove(e));
+canvas.addEventListener('mouseup', (e) => handleMouseUp(e));
+canvas.addEventListener('mouseout', (e) => handleMouseOut(e));
 
 function handleMouseDown(e){
   e.preventDefault();
@@ -179,8 +170,8 @@ function handleMouseMove(e){
   mouseX = parseInt(e.clientX-offsetX);
   mouseY  = parseInt(e.clientY-offsetY);
 
-  var dx = mouseX-startX;
-  var dy = mouseY-startY;
+  var dx = (mouseX-startX) / cameraZoom;
+  var dy = (mouseY-startY) / cameraZoom;
 
   startX = mouseX;
   startY = mouseY;
